@@ -1,14 +1,14 @@
 const express = require("express")
 const cors = require("cors")
-const app = express()
+const api = express()
 
 var corsOptions = {
-    origin: "http://localhost:8080"
+    origin: "http://localhost:8081"
 }
 
-app.use(cors(corsOptions))
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+api.use(cors(corsOptions))
+api.use(express.json())
+api.use(express.urlencoded({extended: true}))
 
 const db = require("./api/models")
 
@@ -17,16 +17,16 @@ db.sequelize.sync()
     console.log("Inicialização completa, Banco Conectado!!!");
 })
 .catch((err) => {
-    console.log("Inicialização interrompida, falha ao conectar ao banco" + err.message);
+    console.log("Inicialização interrompida, falha ao conectar ao banco " + err.message);
 })
 
-require("./api/routes/geladinhos.routes.js")(api)
+require("./api/routes/item.routes")(api)
 
-app.get("/", (req,res) => {
+api.get("/", (req,res) => {
     res.json(`Bem vindo ao Banco`)
 })
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+api.listen(PORT, () => {
     console.log(`Server funcionando na porta ${PORT}.`);
 })

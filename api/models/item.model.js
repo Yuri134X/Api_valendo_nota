@@ -1,9 +1,7 @@
-const sequelize = require("sequelize")
 const {Sequelize} = require("sequelize")
-const { Sequilize } = require(".")
 
-module.exports = (sequelize, sequelize) => {
-    const Item = sequelize.define("items", {
+module.exports = (sequelize, Sequilize) => {
+    const Item = sequelize.define("geladinho", {
         nome: {
             type: Sequilize.STRING
         },
@@ -17,7 +15,7 @@ module.exports = (sequelize, sequelize) => {
             type: Sequelize.FLOAT
         },
         premium: {
-            type: Sequelize.BOOLEAN
+            type: Sequilize.BOOLEAN
         }
     })
     return Item

@@ -1,9 +1,8 @@
 const { Op } = require("sequelize")
 const db = require("../models")
-const Item = db.items
-const op = db.sequilize.op
+const Item = db.geladinho
 
-exports.create = (req,res) => {
+exports.criar = (req,res) => {
     if (!req.body.nome) {
         res.status(400).send({
             message: `O conteúdo não pode estar vazio!`
@@ -19,7 +18,7 @@ exports.create = (req,res) => {
         premium: req.body.premium ? req.body.premium : false      
     }
 
-    Item.create(geladinho)
+    Item.criar(geladinho)
     .then(data => {
         res.send(data)
     })
@@ -42,7 +41,7 @@ exports.acheTodos = (req, res) => {
             .catch(err =>{
                 res.status(500).send({
                     message:
-                        err.message || `Algum erro ocorreu ao pesquisar por todos os items`
+                        err.message || `Algum erro ocorreu ao pesquisar por todos os geladinhos`
           })
      })   
 }
