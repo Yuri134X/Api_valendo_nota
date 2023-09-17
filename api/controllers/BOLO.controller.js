@@ -1,13 +1,12 @@
 const{Op} = require("sequelize")
 const db = require("../models")
-const Sobremesa = db.bolo
+const sobremesa = db.bolo
 
     exports.create = (req,res) => {
         if (!req.body.sabor) {
             res.status(400).send ({
                 message:`o conteúdo não pode estar vazio!`
             })
-        } else {
             return
         }
 
@@ -19,7 +18,7 @@ const Sobremesa = db.bolo
             premium: req.body.premium ? req.body.premium : false
         }
 
-        Sobremesa.create(bolo)
+        sobremesa.create(bolo)
         .then(data => {
             res.send(data)
         })
@@ -34,7 +33,7 @@ const Sobremesa = db.bolo
         const sabor = req.params.sabor
         var condition = sabor ? {sabor: {[Op.like]: `%${sabor}`}}: null
 
-        Sobremesa.findAll({ where: condition})
+        sobremesa.findAll({ where: condition})
             .then(data => {
                 res.send(data)
             })
@@ -48,7 +47,7 @@ const Sobremesa = db.bolo
     exports.findOne = (req, res) => {
         const id = req.params.id
 
-        Sobremesa.findByPk(id)
+        sobremesa.findByPk(id)
         .then(data => {
             if (data) {
                 res.send(data)
@@ -68,7 +67,7 @@ const Sobremesa = db.bolo
     exports.update = (req, res) => {
         const id = req.params.id
         
-        Sobremesa.update(req.body, {
+        sobremesa.update(req.body, {
                 where: {id: id}
             })
                 .then(num => {
@@ -92,7 +91,7 @@ const Sobremesa = db.bolo
     exports.delete = (req, res) => {
         const id = req.params.id
 
-        Sobremesa.destroy({
+        sobremesa.destroy({
             where: {id: id}
         })
         .then(num =>{
@@ -114,7 +113,7 @@ const Sobremesa = db.bolo
     }
 
     exports.deleteAll = (req, res) => {
-        Sobremesa.destroy({
+        sobremesa.destroy({
             where: {},
             truncate: false
         })
@@ -129,7 +128,7 @@ const Sobremesa = db.bolo
     }
 
     exports.findAllPremium = (req, res) => {
-        Sobremesa.findAll({ where: {premium: true}})
+        sobremesa.findAll({ where: {premium: true}})
         .then(data =>{
             res.send(data)
         })
