@@ -17,10 +17,11 @@ db.sequelize.sync()
     console.log("Inicialização completa, Banco Conectado!!!");
 })
 .catch((err) => {
-    console.log("Inicialização interrompida, falha ao conectar ao banco " + err.message);
+    console.log("Inicialização interrompida, falha ao conectar ao banco " + err.message)
 })
 
-require("./api/routes/item.routes")(api)
+require("./api/routes/GELADINHOS.routes")(api)
+require("./api/routes/BOLO.routes")(api)
 
 api.get("/", (req,res) => {
     res.json(`Bem vindo ao Banco`)
@@ -28,5 +29,5 @@ api.get("/", (req,res) => {
 
 const PORT = process.env.PORT || 8080;
 api.listen(PORT, () => {
-    console.log(`Server funcionando na porta ${PORT}.`);
+    console.log(`Server funcionando na porta ${PORT}.`)
 })
