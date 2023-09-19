@@ -20,8 +20,8 @@ db.sequelize.sync()
     console.log("Inicialização interrompida, falha ao conectar ao banco " + err.message)
 })
 
-require("./api/routes/GELADINHOS.routes")(api)
-require("./api/routes/BOLO.routes")(api)
+require("./api/routes/alimentos/GELADINHOS.routes")(api)
+require("./api/routes/alimentos/BOLO.routes")(api)
 
 api.get("/", (req,res) => {
     res.json(`Bem vindo ao Banco`)
