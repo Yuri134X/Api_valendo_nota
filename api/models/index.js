@@ -17,6 +17,8 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize;
 
-db.geladinho = require("./alimentos/GELADINHOS.model.js")(sequelize, Sequelize)
-db.bolo = require("./alimentos/BOLO.model.js")(sequelize, Sequelize)
+db.chef = require("./funcionarios/CHEFS.model.js")(sequelize, Sequelize)
+db.ice_cream = require("./alimentos/ICE_CREAMS.model.js")(sequelize, Sequelize)
+db.cakes = require("./alimentos/CAKES.model.js")(sequelize, Sequelize)
+
 module.exports = db
