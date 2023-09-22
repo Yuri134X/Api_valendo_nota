@@ -2,7 +2,7 @@ const { Op } = require("sequelize")
 const db = require("../../models")
 const ice = db.ice_cream
 
-exports.create = (req,res) => {
+exports.regiterIce = (req,res) => {
     if (!req.body.taste) {
         res.status(400).send({
             message: `The content can't be empty!`
@@ -29,7 +29,7 @@ exports.create = (req,res) => {
         })
     }
 
-    exports.findAll = (req, res) => {
+    exports.findAllIces = (req, res) => {
         const taste = req.params.taste
         var condition = taste ? {taste: {[Op.like]: `%${taste}`}}: null
 
@@ -44,7 +44,7 @@ exports.create = (req,res) => {
             })
     }
 
-    exports.findOne = (req, res) => {
+    exports.findOneIce = (req, res) => {
         const id = req.params.id
 
         ice.findByPk(id)
@@ -64,7 +64,7 @@ exports.create = (req,res) => {
         })
     }
 
-    exports.update = (req, res) => {
+    exports.updateIce = (req, res) => {
         const id = req.params.id
         
         ice.update(req.body, {
@@ -88,7 +88,7 @@ exports.create = (req,res) => {
                 })
     }
 
-    exports.delete = (req, res) => {
+    exports.deleteIce = (req, res) => {
         const id = req.params.id
 
         ice.destroy({
@@ -112,7 +112,7 @@ exports.create = (req,res) => {
         })
     }
 
-    exports.deleteAll = (req, res) => {
+    exports.deleteAllIces = (req, res) => {
         ice.destroy({
             where: {},
             truncate: false
@@ -127,7 +127,7 @@ exports.create = (req,res) => {
         })
     }
 
-    exports.findAllPremium = (req, res) => {
+    exports.findIcePremium = (req, res) => {
         ice.findAll({ where: {premium: true}})
         .then(data =>{
             res.send(data)

@@ -2,16 +2,16 @@ module.exports = api =>{
     const chef = require("../../controllers/funcionarios/CHEFS.controller")
         var router = require("express").Router()
 
-    router.post("/", chef.create)
+    router.post("/register", chef.registerCook)
 
-    router.get("/", chef.findAll)
-    router.get("/premium", chef.findAllPremium)
-    router.get("/:id", chef.findOne)
+    router.get("/find/all", chef.findAllCooks)
+    router.get("/find/graduated", chef.findCooksGraduates)
+    router.get("/find/:id", chef.findOneCook)
 
-    router.put("/:id", chef.update)
+    router.put("/update/:id", chef.updateCook)
 
-    router.delete("/:id", chef.delete)
-    router.delete("/", chef.deleteAll)
+    router.delete("/delete/:id", chef.deleteCook)
+    router.delete("/deleteAll", chef.deleteAllCooks)
 
     api.use("/api/chef", router)
 }

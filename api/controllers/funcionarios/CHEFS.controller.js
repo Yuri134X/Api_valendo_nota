@@ -2,8 +2,8 @@ const {Op} = require("sequelize")
 const db = require("../../models")
 const chef = db.chef
 
-exports.create = (req,res) => {
-    if (!req.body.phone) {
+exports.registerCook = (req,res) => {
+    if (!req.body.name) {
         res.status(400).send({
             message: `The content can't be empty!`
         })
@@ -11,7 +11,7 @@ exports.create = (req,res) => {
     }
 
 
-    const chef = {
+    const cook = {
         name: req.body.name,
         phone: req.body.phone,
         salary: req.body.salary,
@@ -19,7 +19,7 @@ exports.create = (req,res) => {
         graduated: req.body.graduated ? req.body.graduated : false
     }
 
-  chef.create(chef)
+  chef.create(cook)
         .then(data => {
             res.send(data)
         })
@@ -30,7 +30,7 @@ exports.create = (req,res) => {
         })
     }
 
-    exports.findAll = (req, res) => {
+    exports.findAllCooks = (req, res) => {
         const name = req.params.name
         var condition = name ? {name: {[Op.like]: `%${name}`}}: null
 
@@ -45,7 +45,7 @@ exports.create = (req,res) => {
             })
     }
 
-    exports.findOne = (req, res) => {
+    exports.findOneCook = (req, res) => {
         const id = req.params.id
 
         chef.findByPk(id)
@@ -65,7 +65,7 @@ exports.create = (req,res) => {
         })
     }
 
-    exports.update = (req, res) => {
+    exports.updateCook = (req, res) => {
         const id = req.params.id
         
         chef.update(req.body, {
@@ -89,7 +89,7 @@ exports.create = (req,res) => {
                 })
     }
 
-    exports.delete = (req, res) => {
+    exports.deleteCook = (req, res) => {
         const id = req.params.id
 
         chef.destroy({
@@ -113,7 +113,7 @@ exports.create = (req,res) => {
         })
     }
 
-    exports.deleteAll = (req, res) => {
+    exports.deleteAllCooks = (req, res) => {
         chef.destroy({
             where: {},
             truncate: false
@@ -128,14 +128,14 @@ exports.create = (req,res) => {
         })
     }
 
-    exports.findAllPremium = (req, res) => {
-        chef.findAll({ where: {premium: true}})
+    exports.findCooksGraduates = (req, res) => {
+        chef.findAll({ where: {graduated: true}})
         .then(data =>{
             res.send(data)
         })
         .catch(err =>{
             res.status(500).send({
-                message: `error trying to find all Premium Cakes`
+                message: `error trying to find all cooks graduates`
             })
         })
     } 
