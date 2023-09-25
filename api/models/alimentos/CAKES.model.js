@@ -6,7 +6,6 @@ module.exports = (sequelize, Sequilize) => {
             type: Sequilize.STRING,
             validate: {
             len: [1,40],
-            allowNull:false,
             notEmpty: true
             }
         },
@@ -14,16 +13,13 @@ module.exports = (sequelize, Sequilize) => {
             type: Sequelize.STRING,
             validate: {
             len: [1,40],
-            allowNull:false,
             notEmpty: true
             }
         },
         price: {
             type: Sequelize.FLOAT,
             validate: {
-            isInt: true,
             min: 1.0,
-            allowNull:false,
             notEmpty: true
             }
         },
@@ -32,7 +28,6 @@ module.exports = (sequelize, Sequilize) => {
             validate: {
             isFloat: true, 
             min: 1.0,
-            allowNull:false,
             notEmpty: true
             }
         },

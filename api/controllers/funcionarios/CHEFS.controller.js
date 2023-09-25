@@ -1,6 +1,6 @@
 const {Op} = require("sequelize")
 const db = require("../../models")
-const chef = db.chef
+const chef = db.chefs
 
 exports.registerCook = (req,res) => {
     if (!req.body.name) {

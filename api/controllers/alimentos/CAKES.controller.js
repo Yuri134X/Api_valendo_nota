@@ -1,6 +1,6 @@
 const{Op} = require("sequelize")
 const db = require("../../models")
-const cake = db.cakes
+const cakes = db.cakes
 
     exports.registerCake = (req,res) => {
         if (!req.body.taste) {
@@ -18,7 +18,7 @@ const cake = db.cakes
             premium: req.body.premium ? req.body.premium : false
         }
 
-     cake.create(Cake)
+     cakes.create(Cake)
         .then(data => {
             res.send(data)
         })
@@ -33,7 +33,7 @@ const cake = db.cakes
         const taste = req.params.taste
         var condition = taste ? {taste: {[Op.like]: `%${taste}`}}: null
 
-     cake.findAll({ where: condition})
+     cakes.findAll({ where: condition})
             .then(data => {
                 res.send(data)
             })
@@ -47,7 +47,7 @@ const cake = db.cakes
     exports.findOneCake = (req, res) => {
         const id = req.params.id
 
-     cake.findByPk(id)
+     cakes.findByPk(id)
         .then(data => {
             if (data) {
                 res.send(data)
@@ -67,7 +67,7 @@ const cake = db.cakes
     exports.updateCake = (req, res) => {
         const id = req.params.id
         
-     cake.update(req.body, {
+     cakes.update(req.body, {
                 where: {id: id}
             })
                 .then(num => {
@@ -91,7 +91,7 @@ const cake = db.cakes
     exports.deleteCake = (req, res) => {
         const id = req.params.id
 
-     cake.destroy({
+     cakes.destroy({
             where: {id: id}
         })
         .then(num =>{
@@ -113,7 +113,7 @@ const cake = db.cakes
     }
 
     exports.deleteAllCakes = (req, res) => {
-     cake.destroy({
+     cakes.destroy({
             where: {},
             truncate: false
         })
@@ -128,7 +128,7 @@ const cake = db.cakes
     }
 
     exports.findCakesPremium = (req, res) => {
-     cake.findAll({ where: {premium: true}})
+     cakes.findAll({ where: {premium: true}})
         .then(data =>{
             res.send(data)
         })

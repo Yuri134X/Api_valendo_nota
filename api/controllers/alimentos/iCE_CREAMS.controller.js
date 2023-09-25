@@ -1,6 +1,6 @@
 const { Op } = require("sequelize")
 const db = require("../../models")
-const ice = db.ice_cream
+const ice = db.ices
 
 exports.regiterIce = (req,res) => {
     if (!req.body.taste) {
