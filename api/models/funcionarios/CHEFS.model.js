@@ -12,7 +12,6 @@ module.exports = (sequelize, Sequilize) => {
         phone: {
             type: Sequelize.INTEGER,
             validate: {
-                isFloat: true, 
                 isNumeric: true,  
                 min: 1,
                 notEmpty: true

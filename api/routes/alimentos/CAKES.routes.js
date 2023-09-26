@@ -10,8 +10,8 @@ module.exports = api =>{
 
     router.put("/update/:id", cake.updateCake)
 
-    router.delete("delete/:id", cake.deleteCake)
-    router.delete("deleteAll", cake.deleteAllCakes)
+    router.delete("/delete/:id", cake.deleteCake)
+    router.delete("/deleteAll", cake.deleteAllCakes)
 
     api.use("/api/cake", router)
 }
