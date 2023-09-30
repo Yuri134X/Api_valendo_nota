@@ -15,7 +15,8 @@ const cakes = db.cakes
             coverage: req.body.coverage,
             price: req.body.price,
             weight: req.body.weight,
-            premium: req.body.premium ? req.body.premium : false
+            premium: req.body.premium ? req.body.premium : false,
+            id_chef: req.body.id_chef
         }
 
      cakes.create(Cake)
